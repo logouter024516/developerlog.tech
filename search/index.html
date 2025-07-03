@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>통합 검색 포털</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1 {
+      color: #00e5ff;
+    }
+    select, input, button {
+      padding: 12px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+    }
+    select, input {
+      background-color: #1e1e1e;
+      color: #ffffff;
+    }
+    button {
+      background-color: #00e5ff;
+      color: #000000;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    button:hover {
+      background-color: #00bcd4;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌙 통합 검색 포털</h1>
+  <form id="searchForm">
+    <select id="engineSelect">
+      <option value="google">Google</option>
+      <option value="naver">Naver</option>
+      <option value="chatgpt">ChatGPT</option>
+      <option value="duckduckgo">DuckDuckGo</option>
+    
+    </select>
+    <input type="text" id="searchQuery" placeholder="검색어를 입력하세요" required />
+    <button type="submit">검색</button>
+  </form>
+
+  <script>
+    const searchForm = document.getElementById("searchForm");
+
+    searchForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const engine = document.getElementById("engineSelect").value;
+      const query = encodeURIComponent(document.getElementById("searchQuery").value);
+      let searchUrl = "";
+
+      switch (engine) {
+        case "google":
+          searchUrl = `https://www.google.com/search?q=${query}`;
+          break;
+        case "naver":
+          searchUrl = `https://search.naver.com/search.naver?query=${query}`;
+          break;
+        case "chatgpt":
+          searchUrl = `https://chat.openai.com/?q=${query}`;
+          break;
+        case "duckduckgo":
+          searchUrl = `https://duckduckgo.com/?q=${query}`;
+          break;
+
+      }
+
+      window.open(searchUrl, "_blank");
+    });
+  </script>
+</body>
+</html>
