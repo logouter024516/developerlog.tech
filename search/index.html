@@ -120,13 +120,23 @@
   </div>
 
   <script>
-    function search() {
-      const engine = document.getElementById("engine").value;
-      const query = document.getElementById("query").value;
-      if (query.trim() !== "") {
-        window.open(engine + encodeURIComponent(query), "_blank");
+    switch (engine) {
+        case "google":
+          searchUrl = `https://www.google.com/search?q=${query}`;
+          break;
+        case "naver":
+          searchUrl = `https://search.naver.com/search.naver?query=${query}`;
+          break;
+        case "chatgpt":
+          searchUrl = `https://chat.openai.com/?q=${query}`;
+          break;
+        case "duckduckgo":
+          searchUrl = `https://duckduckgo.com/?q=${query}`;
+          break;
+
       }
-    }
+      window.open(searchUrl, "_blank");
+
 
     function toggleMode() {
       const body = document.body;
