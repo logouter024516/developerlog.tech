@@ -130,7 +130,7 @@
         <option value="https://chat.openai.com/gpt?q=">ChatGPT</option>
       </select>
       <input type="text" id="query" placeholder="검색어를 입력하세요" />
-      <button onclick="search()">검색</button>
+      <button type="submit">검색</button>
     </div>
   </div>
 
@@ -147,7 +147,17 @@
   </div>
 
   <script>
-    switch (engine) {
+    <script>
+    const searchForm = document.getElementById("searchForm");
+
+    searchForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const engine = document.getElementById("engineSelect").value;
+      const query = encodeURIComponent(document.getElementById("searchQuery").value);
+      let searchUrl = "";
+
+      switch (engine) {
         case "google":
           searchUrl = `https://www.google.com/search?q=${query}`;
           break;
@@ -162,8 +172,8 @@
           break;
 
       }
-      window.open(searchUrl, "_blank");
 
+      window.open(searchUrl, "_blank");
     function toggleMode() {
       const body = document.body;
       const btn = document.querySelector('.toggle-mode');
