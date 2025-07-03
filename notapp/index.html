@@ -1,83 +1,170 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>통합 검색 포털</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIMPLY SEARCH</title>
   <style>
+    :root {
+      --bg-color: #111;
+      --text-color: white;
+      --accent-color: #BC9AFF;
+      --button-bg: #BC9AFF;
+      --button-hover: #a885f5;
+    }
+
+    body.light {
+      --bg-color: #f8f8f8;
+      --text-color: #111;
+      --accent-color: #874bff;
+      --button-bg: #874bff;
+      --button-hover: #aa77ff;
+    }
+
     body {
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       font-family: 'Arial', sans-serif;
-      background-color: #121212;
-      color: #ffffff;
+      transition: background-color 0.3s, color 0.3s;
       text-align: center;
-      padding-top: 100px;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    h1 {
-      color: #00e5ff;
+
+    .top-section {
+      flex: 1;
     }
+
+    .title {
+      font-size: 42px;
+      margin-bottom: 30px;
+      color: var(--accent-color);
+    }
+
+    .search-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
     select, input, button {
-      padding: 12px;
-      margin: 10px;
+      padding: 10px;
       font-size: 16px;
-      border-radius: 8px;
+      border-radius: 6px;
       border: none;
     }
-    select, input {
-      background-color: #1e1e1e;
-      color: #ffffff;
+
+    input[type="text"] {
+      min-width: 200px;
+      width: 40%;
     }
-    button {
-      background-color: #00e5ff;
-      color: #000000;
+
+    .toggle-mode {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: 2px solid var(--accent-color);
+      color: var(--accent-color);
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      transition: all 0.3s ease;
     }
-    button:hover {
-      background-color: #00bcd4;
+
+    .toggle-mode:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 60px;
+    }
+
+    .footer h1 {
+      font-size: 36px;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .download-button {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      font-size: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .download-button:hover {
+      background-color: var(--button-hover);
     }
   </style>
 </head>
-<body>
-  <h1>🌙 통합 검색 포털</h1>
-  <form id="searchForm">
-    <select id="engineSelect">
-      <option value="google">Google</option>
-      <option value="naver">Naver</option>
-      <option value="chatgpt">ChatGPT</option>
-      <option value="duckduckgo">DuckDuckGo</option>
-    
-    </select>
-    <input type="text" id="searchQuery" placeholder="검색어를 입력하세요" required />
-    <button type="submit">검색</button>
-  </form>
+<body class="dark">
+  <button class="toggle-mode" onclick="toggleMode()">🌙 다크 모드</button>
+
+  <div class="top-section">
+    <div class="title">SIMPLY SEARCH</div>
+
+    <div class="search-container">
+      <select id="engine">
+        <option value="https://www.google.com/search?q=">Google</option>
+        <option value="https://search.naver.com/search.naver?query=">Naver</option>
+        <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+        <option value="https://chat.openai.com/gpt?q=">ChatGPT</option>
+      </select>
+      <input type="text" id="query" placeholder="검색어를 입력하세요" />
+      <button onclick="search()">검색</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h1>SIMPLY APPS</h1>
+    <div class="button-container">
+      <a href="./simply_search.apk" download>
+        <button class="download-button">🔍 Simply Search</button>
+      </a>
+      <a href="./simply_dday.apk" download>
+        <button class="download-button">❤️ Simply D-Day</button>
+      </a>
+    </div>
+  </div>
 
   <script>
-    const searchForm = document.getElementById("searchForm");
-
-    searchForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const engine = document.getElementById("engineSelect").value;
-      const query = encodeURIComponent(document.getElementById("searchQuery").value);
-      let searchUrl = "";
-
-      switch (engine) {
-        case "google":
-          searchUrl = `https://www.google.com/search?q=${query}`;
-          break;
-        case "naver":
-          searchUrl = `https://search.naver.com/search.naver?query=${query}`;
-          break;
-        case "chatgpt":
-          searchUrl = `https://chat.openai.com/?q=${query}`;
-          break;
-        case "duckduckgo":
-          searchUrl = `https://duckduckgo.com/?q=${query}`;
-          break;
-
+    function search() {
+      const engine = document.getElementById("engine").value;
+      const query = document.getElementById("query").value;
+      if (query.trim() !== "") {
+        window.open(engine + encodeURIComponent(query), "_blank");
       }
+    }
 
-      window.open(searchUrl, "_blank");
-    });
+    function toggleMode() {
+      const body = document.body;
+      const btn = document.querySelector('.toggle-mode');
+      body.classList.toggle('light');
+      if (body.classList.contains('light')) {
+        btn.textContent = '☀️ 라이트 모드';
+      } else {
+        btn.textContent = '🌙 다크 모드';
+      }
+    }
   </script>
 </body>
 </html>
