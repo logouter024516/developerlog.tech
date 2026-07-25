@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta AR Glasses Presentation Cite list</title>
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --accent-color: #3b82f6;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    .reference-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .reference-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1rem;
+      text-align: center;
+      color: #0f172a;
+    }
+
+    .reference-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .reference-item {
+      background-color: #fcfcfc;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .apa-citation {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 1.1rem;
+      line-height: 2;
+      padding-left: 2rem;
+      text-indent: -2rem; /* APA 7th Hanging Indent */
+      color: #000;
+    }
+
+    .tag-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      background-color: #e2e8f0;
+      color: #475569;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .attachment-box {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background-color: #eff6ff;
+      border: 1px dashed var(--accent-color);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .attachment-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .attachment-title {
+      font-weight: 600;
+      color: #1e3a8a;
+      font-size: 1.1rem;
+    }
+
+    .attachment-desc {
+      font-size: 0.9rem;
+      color: #3b82f6;
+      margin-top: 0.25rem;
+    }
+
+    .download-btn {
+      background-color: var(--accent-color);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+    .download-btn:hover {
+      background-color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="reference-container">
+    <h1 class="reference-title">Meta AR Glasses Presentation Cite list</h1>
+    
+    <ul class="reference-list">
+      <!-- Patent 1 -->
+      <li class="reference-item">
+        <div class="apa-citation">
+          Meta Platforms Technologies, LLC. (2023). <i>Systems and methods for assembling a head-mounted display</i> (U.S. Patent Application Publication No. US 2023/0316672 A1). U.S. Patent and Trademark Office.
+        </div>
+        <div class="tag-group">
+          <span class="tag">PATENT APPLICATION</span>
+          <span class="tag">META PLATFORMS</span>
+        </div>
+      </li>
+
+      <!-- Patent 2 -->
+      <li class="reference-item">
+        <div class="apa-citation">
+          Meta Platforms Technologies, LLC. (2026). <i>Methods for generating archives of conversational interactions with an artificially intelligent assistant, and systems of use thereof</i> (U.S. Patent Application Publication No. US 2026/0086650 A1). U.S. Patent and Trademark Office.
+        </div>
+        <div class="tag-group">
+          <span class="tag">PATENT APPLICATION</span>
+          <span class="tag">META PLATFORMS</span>
+        </div>
+      </li>
+
+      <!-- Patent 3 -->
+      <li class="reference-item">
+        <div class="apa-citation">
+          Trail, N. D. (2019). <i>Waveguide integrated eye tracking</i> (U.S. Patent No. 10,481,687 B1). U.S. Patent and Trademark Office.
+        </div>
+        <div class="tag-group">
+          <span class="tag">PATENT</span>
+          <span class="tag">META PLATFORMS</span>
+          <span class="tag">EYE TRACKING</span>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Attachment Section -->
+    <div class="attachment-box">
+      <div class="attachment-info">
+        <span class="attachment-title">📎 첨부 데이터세트 (Dataset)</span>
+        <span class="attachment-desc">Meta AR Glasses 관련 특허 전처리 데이터</span>
+        <div class="apa-citation" style="margin-top: 0.5rem; font-size: 0.95rem; padding-left: 1.5rem; text-indent: -1.5rem;">
+          <i>patent_preprocessed.csv</i> [Data set]. (2026).
+        </div>
+      </div>
+      <a href="patent_preprocessed.csv" class="download-btn" download>CSV 다운로드</a>
+    </div>
+
+  </div>
+</body>
+</html>
